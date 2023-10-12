@@ -4,13 +4,15 @@ import { ListComponent } from './list/list.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ResumeComponent } from './resume/resume.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
-import { MainComponent } from './main/main.component'
+import { MainComponent } from './main/main.component';
+import { DetailComponent } from './detail/detail.component'
 
 @NgModule({
   declarations: [
     ListComponent,
     ResumeComponent,
-    MainComponent
+    MainComponent,
+    DetailComponent
   ],
   imports: [
     CommonModule,

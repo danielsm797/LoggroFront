@@ -28,6 +28,8 @@ export class ListComponent implements OnInit {
 
   loading = true
 
+  imageSelected!: SearchResponse | null
+
   //#endregion
 
   //#region Constructors
@@ -96,6 +98,7 @@ export class ListComponent implements OnInit {
         object
           .forEach(x => {
             x.createdAt = DateTime.fromISO(x.createdAt).toLocal().toFormat('yyyy/LL/dd HH:mm')
+            x.fileName = x.path
             x.path = `${environment.resources}${x.path}`
           })
 
@@ -125,6 +128,14 @@ export class ListComponent implements OnInit {
 
   getMessageError(field: string) {
     return FormMessage.get(this.frmList, field)
+  }
+
+  viewDetail(image: SearchResponse) {
+    this.imageSelected = image
+  }
+
+  closeModalDetail() {
+    this.imageSelected = null
   }
 
   //#endregion

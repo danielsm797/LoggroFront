@@ -9,7 +9,8 @@ export type SearchResponse = {
   path: string,
   prevExtension: string,
   createdAt: string,
-  user: string
+  user: string,
+  fileName?: string
 }
 
 export type ResumeResponse = {

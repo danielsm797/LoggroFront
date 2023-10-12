@@ -5,11 +5,14 @@
     <img title="logo" class="w-14" src="../../../assets/logo.png" />
 
     <h1 class="text-red-300 text-lg font-semibold text-center mb-3">
-      Almacenamiento y conversión de imágenes en formato JPEG, JPG a PNG
+      Restobares APP
     </h1>
 
     <label class="text-white">
-      A continuación, seleccione la imagen que quiere convertir a formato .png y diligencie el formulario del paso 2
+      A continuación, selecciona la imagen que requireas almacenar y diligencia el formulario
+      del paso 2. Al subir la imagen, podrás visualizar un histórico por fechas, donde se visualizará
+      el responsable del proceso y el recurso almacenado. También, se podrá visualizar la cantidad de imagenes
+      procesadas por horas en un rango de fechas definido por el usuario.
     </label>
 
   </section>
@@ -59,11 +62,11 @@
           Nombre de la imagen
         </label>
 
-        <input type='text' placeholder='Ingrese el nombre de la imagen' formControlName="userName"
+        <input type='text' placeholder='Ingrese el nombre de la imagen' formControlName="fileName"
           class='bg-transparent text-white rounded-md border-2 border-gray-600 py-1 px-2 hover:border-violet-400 w-full' />
 
         <label class="text-red-300 text-sm">
-          {{getMessageError('userName')}}
+          {{getMessageError('fileName')}}
         </label>
 
       </div>
@@ -74,11 +77,11 @@
           Nombre completo
         </label>
 
-        <input type='text' placeholder='Ingrese el nombre completo' formControlName="fileName"
+        <input type='text' placeholder='Ingrese el nombre completo' formControlName="userName"
           class='bg-transparent text-white rounded-md border-2 border-gray-600 py-1 px-2 hover:border-violet-400 w-full' />
 
         <label class="text-red-300 text-sm">
-          {{getMessageError('fileName')}}
+          {{getMessageError('userName')}}
         </label>
 
       </div>

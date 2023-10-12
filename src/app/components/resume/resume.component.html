@@ -1,12 +1,12 @@
 <div class="flex flex-col">
 
-  <section class="grid grid-cols-2 p-5">
+  <section class="grid lg:grid-cols-2 p-5">
 
     <h1 class="text-green-300 text-lg font-semibold mb-3">
       Imágenes procesadas por hora
     </h1>
 
-    <form class="flex flex-row justify-end gap-3" [formGroup]="frmResume">
+    <form class="flex sm:flex-col lg:flex-row justify-end gap-3" [formGroup]="frmResume">
 
       <input type='datetime-local' placeholder='Fecha inicial' formControlName="startDate" #txtDateStart
         [ngClass]="{'border-red-600': getMessageError('startDate')}"
