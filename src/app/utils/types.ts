@@ -11,3 +11,8 @@ export type SearchResponse = {
   createdAt: string,
   user: string
 }
+
+export type ResumeResponse = {
+  count: number,
+  _id: string
+}

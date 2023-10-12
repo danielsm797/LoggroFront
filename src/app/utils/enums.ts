@@ -4,3 +4,7 @@ export enum HttpMethods {
   PUT,
   DELETE
 }
+
+export enum Events {
+  evntRefreshResume
+}

@@ -1,6 +1,10 @@
-<section class="flex flex-col gap-2">
+<section class="flex flex-col">
 
-  <form [formGroup]="frmList">
+  <h1 class="text-green-300 text-lg font-semibold mb-3">
+    Imágenes procesadas
+  </h1>
+
+  <form *ngIf="frmList" [formGroup]="frmList">
 
     <div>
 
@@ -8,28 +12,30 @@
         Fecha inicial
       </label>
 
-      <input type='datetime-local' placeholder='Fecha inicial' formControlName="startDate"
-        class='bg-transparent text-white rounded-md border-2 border-gray-600 py-1 px-2 hover:border-violet-400 w-full' />
+      <input type='datetime-local' placeholder='Fecha inicial' formControlName="startDate" #txtDateStart
+        class='bg-transparent text-white rounded-md border-2 border-gray-600 py-1 px-2 hover:border-violet-400 w-full'
+        [ngClass]="{'border-red-600': getMessageError('startDate')}" />
 
     </div>
 
-    <div>
+    <div class="mt-2">
 
       <label class="text-white font-light text-sm">
         Fecha final
       </label>
 
-      <input type='datetime-local' placeholder='Fecha final' formControlName="endDate"
-        class='bg-transparent text-white rounded-md border-2 border-gray-600 py-1 px-2 hover:border-violet-400 w-full' />
+      <input type='datetime-local' placeholder='Fecha final' formControlName="endDate" #txtDateEnd
+        class='bg-transparent text-white rounded-md border-2 border-gray-600 py-1 px-2 hover:border-violet-400 w-full'
+        [ngClass]="{'border-red-600': getMessageError('endDate')}" />
 
     </div>
 
-    <button type="button" (click)="validateForm()"
-      class="mt-5 pointer-events-auto rounded-md bg-violet-600 px-3 py-2 text-[0.8125rem] font-semibold leading-5 text-white hover:bg-violet-500 w-full">
-      {{ loading ? 'Cargando...' : 'Consular' }}
-    </button>
-
   </form>
+
+  <button type="button" (click)="validateForm()"
+    class="mt-5 pointer-events-auto rounded-md bg-gray-900 px-3 py-2 text-[0.8125rem] font-semibold leading-5 text-violet-400 border-2 border-gray-900 hover:border-violet-300 w-full">
+    Consultar
+  </button>
 
 </section>
 
@@ -37,7 +43,8 @@
 
   <div *ngFor="let k of images" class="flex flex-row items-center gap-4">
 
-    <img [src]="k.path" title="Imagen subida por el usuario" class="w-24 rounded-2xl" />
+    <img [src]="k.path" title="Imagen subida por el usuario"
+      class="w-24 rounded-2xl cursor-pointer border-2 border-transparent hover:border-white" />
 
     <div class="flex flex-col text-white">
       <label class="text-sm font-light">{{k.createdAt}}</label>
@@ -45,5 +52,13 @@
     </div>
 
   </div>
+
+</section>
+
+<section *ngIf="!images.length" class="flex flex-col justify-center items-center h-2/4">
+
+  <h1 class="text-violet-300 text-lg font-semibold text-center">
+    No se han encontrado imágenes procesadas en el rango de fechas seleccionado
+  </h1>
 
 </section>

@@ -13,8 +13,17 @@ export class ConversionApiService {
   ) { }
 
   search(startDate: string, endDate: string) {
-
     return this.requestService
       .request(HttpMethods.GET, environment.search, { fi: startDate, ff: endDate })
+  }
+
+  resume() {
+    return this.requestService
+      .request(HttpMethods.GET, environment.resume)
+  }
+
+  convert(form: FormData, userName: string, fileName: string) {
+    return this.requestService
+      .request(HttpMethods.POST, environment.convert, { userName, fileName }, form)
   }
 }

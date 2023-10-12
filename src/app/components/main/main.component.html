@@ -1,0 +1,90 @@
+<div class="grid grid-cols-3 h-full">
+
+  <section class="border-r-2 border-gray-900 p-3">
+
+    <h1 class="text-red-300 text-lg font-semibold text-center mb-3">
+      Convertir imágenes de JPEG, JPG a PNG
+    </h1>
+
+    <label class="text-white">
+      A continuación, seleccione la imagen que quiere convertir a formato .png y diligencie el formulario del paso 2
+    </label>
+
+  </section>
+
+  <section class="border-r-2 border-gray-900 p-3 flex flex-col gap-4 justify-center items-center">
+
+    <form class="flex flex-col gap-3">
+
+      <h1 class="text-green-300 text-lg font-semibold text-center mb-3">
+        Paso 1. Seleccionar imagen
+      </h1>
+
+      <div>
+
+        <input type='file' title="Seleccione una imagen" (change)="changeImage($event)" #txtFile
+          accept="image/jpeg, image/jpg"
+          class='bg-transparent text-white rounded-md border-2 border-gray-600 py-1 px-2 hover:border-violet-400 w-full' />
+
+        <label class="text-red-300 text-sm">
+          {{getMessageError('image')}}
+        </label>
+
+      </div>
+
+    </form>
+
+    <div class="w-4/5 h-full border-2 rounded-xl border-dashed border-gray-600" *ngIf="!image.value"></div>
+
+    <img class="w-4/5 h-full rounded-xl" [src]="image.value" title="Image selected" *ngIf="image.value" />
+
+  </section>
+
+  <section class="p-3 flex flex-col justify-center">
+
+    <form class="flex flex-col gap-3" [formGroup]="frmMain">
+
+      <h1 class="text-green-300 text-lg font-semibold mb-3">
+        Paso 2. Datos requeridos
+      </h1>
+
+      <div>
+
+        <label class="text-white font-light text-sm">
+          Nombre de la imagen
+        </label>
+
+        <input type='text' placeholder='Ingrese el nombre de la imagen' formControlName="userName"
+          class='bg-transparent text-white rounded-md border-2 border-gray-600 py-1 px-2 hover:border-violet-400 w-full' />
+
+        <label class="text-red-300 text-sm">
+          {{getMessageError('userName')}}
+        </label>
+
+      </div>
+
+      <div>
+
+        <label class="text-white font-light text-sm">
+          Nombre completo
+        </label>
+
+        <input type='text' placeholder='Ingrese el nombre completo' formControlName="fileName"
+          class='bg-transparent text-white rounded-md border-2 border-gray-600 py-1 px-2 hover:border-violet-400 w-full' />
+
+        <label class="text-red-300 text-sm">
+          {{getMessageError('fileName')}}
+        </label>
+
+      </div>
+
+      <button type="button" (click)="validateForm()"
+        class="mt-5 pointer-events-auto rounded-md bg-gray-900 px-3 py-2 text-[0.8125rem] font-semibold leading-5 text-violet-400 border-2 border-gray-900 hover:border-violet-300 w-full">
+        {{ loading ? 'Cargando...' : 'Convertir' }}
+      </button>
+
+    </form>
+
+  </section>
+
+</div>

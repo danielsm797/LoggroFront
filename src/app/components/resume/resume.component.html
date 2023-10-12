@@ -1,0 +1,30 @@
+<div class="flex flex-col">
+
+  <section class="grid grid-cols-2 p-3">
+
+    <h1 class="text-green-300 text-lg font-semibold mb-3">
+      Imágenes procesadas por hora
+    </h1>
+
+    <div class="flex flex-row justify-end">
+
+      <button type="button" title="Refresh" (click)="searchResume()"
+        class="pointer-events-auto rounded-md bg-gray-900 px-3 py-2 text-[0.8125rem] font-semibold leading-5 text-violet-400 border-2 border-gray-900 hover:border-violet-300 w-20">
+        Refresh
+      </button>
+
+    </div>
+
+  </section>
+
+  <section>
+
+    <div id="chart">
+      <apx-chart *ngIf="chartOptions" [series]="chartOptions.series" [chart]="chartOptions.chart"
+        [xaxis]="chartOptions.xaxis" [colors]="chartOptions.colors" [stroke]="chartOptions.stroke"
+        [tooltip]="chartOptions.tooltip" [dataLabels]="chartOptions.dataLabels" [grid]="chartOptions.grid"></apx-chart>
+    </div>
+
+  </section>
+
+</div>

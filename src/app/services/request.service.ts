@@ -20,6 +20,10 @@ export class RequestService {
       response = firstValueFrom(this.http.get(url, { params }))
     }
 
+    if (httpMethod === HttpMethods.POST) {
+      response = firstValueFrom(this.http.post(url, body, { params }))
+    }
+
     return response
   }
 }
