@@ -1,0 +1,49 @@
+<section class="flex flex-col gap-2">
+
+  <form [formGroup]="frmList">
+
+    <div>
+
+      <label class="text-white font-light text-sm">
+        Fecha inicial
+      </label>
+
+      <input type='datetime-local' placeholder='Fecha inicial' formControlName="startDate"
+        class='bg-transparent text-white rounded-md border-2 border-gray-600 py-1 px-2 hover:border-violet-400 w-full' />
+
+    </div>
+
+    <div>
+
+      <label class="text-white font-light text-sm">
+        Fecha final
+      </label>
+
+      <input type='datetime-local' placeholder='Fecha final' formControlName="endDate"
+        class='bg-transparent text-white rounded-md border-2 border-gray-600 py-1 px-2 hover:border-violet-400 w-full' />
+
+    </div>
+
+    <button type="button" (click)="validateForm()"
+      class="mt-5 pointer-events-auto rounded-md bg-violet-600 px-3 py-2 text-[0.8125rem] font-semibold leading-5 text-white hover:bg-violet-500 w-full">
+      {{ loading ? 'Cargando...' : 'Consular' }}
+    </button>
+
+  </form>
+
+</section>
+
+<section *ngIf="images.length" class="flex flex-col gap-4 mt-4 list-content">
+
+  <div *ngFor="let k of images" class="flex flex-row items-center gap-4">
+
+    <img [src]="k.path" title="Imagen subida por el usuario" class="w-24 rounded-2xl" />
+
+    <div class="flex flex-col text-white">
+      <label class="text-sm font-light">{{k.createdAt}}</label>
+      <label>{{k.user}}</label>
+    </div>
+
+  </div>
+
+</section>
