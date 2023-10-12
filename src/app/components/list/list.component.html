@@ -4,7 +4,8 @@
     Imágenes procesadas
   </h1>
 
-  <form *ngIf="frmList" [formGroup]="frmList">
+  <form *ngIf="frmList" class="flex max-[640px]:flex-col sm:flex-col md:flex-row lg:flex-col gap-3"
+    [formGroup]="frmList">
 
     <div>
 
@@ -18,7 +19,7 @@
 
     </div>
 
-    <div class="mt-2">
+    <div>
 
       <label class="text-white font-light text-sm">
         Fecha final
@@ -30,16 +31,18 @@
 
     </div>
 
+    <button type="button" (click)="validateForm()"
+      class="pointer-events-auto rounded-md bg-gray-800 px-3 py-2 text-[0.8125rem] font-semibold leading-5 text-violet-400 border-2 border-gray-900 hover:border-violet-300 w-full">
+      Consultar
+    </button>
+
   </form>
 
-  <button type="button" (click)="validateForm()"
-    class="mt-5 pointer-events-auto rounded-md bg-gray-900 px-3 py-2 text-[0.8125rem] font-semibold leading-5 text-violet-400 border-2 border-gray-900 hover:border-violet-300 w-full">
-    Consultar
-  </button>
 
 </section>
 
-<section *ngIf="images.length" class="flex flex-col gap-4 mt-4 list-content">
+<section *ngIf="images.length"
+  class="grid max-[640px]:grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 mt-4 list-content">
 
   <div *ngFor="let k of images" class="flex flex-row items-center gap-4">
 

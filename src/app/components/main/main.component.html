@@ -1,6 +1,6 @@
-<div class="grid grid-cols-3 h-full">
+<div class="grid lg:grid-cols-3 h-full">
 
-  <section class="border-r-2 border-gray-900 p-3">
+  <section class="p-3 border-gray-900 max-[640px]:border-b-2 sm:border-b-2 lg:border-r-2">
 
     <h1 class="text-red-300 text-lg font-semibold text-center mb-3">
       Convertir imágenes de JPEG, JPG a PNG
@@ -12,7 +12,8 @@
 
   </section>
 
-  <section class="border-r-2 border-gray-900 p-3 flex flex-col gap-4 justify-center items-center">
+  <section
+    class="p-3 border-gray-900 flex flex-col gap-4 justify-center items-center max-[640px]:border-b-2 sm:border-b-2 lg:border-r-2">
 
     <form class="flex flex-col gap-3">
 
@@ -44,7 +45,7 @@
 
     <form class="flex flex-col gap-3" [formGroup]="frmMain">
 
-      <h1 class="text-green-300 text-lg font-semibold mb-3">
+      <h1 class="text-green-300 text-lg font-semibold text-center mb-3">
         Paso 2. Datos requeridos
       </h1>
 
