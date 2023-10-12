@@ -74,7 +74,7 @@ export class MainComponent {
   validateForm() {
 
     if (this.frmMain.invalid) {
-      this.frmMain.markAllAsTouched()
+      return this.frmMain.markAllAsTouched()
     }
 
     this.#convert()
@@ -112,6 +112,12 @@ export class MainComponent {
 
     this.frmMain.reset()
     this.txtFile.nativeElement.value = ''
+  }
+
+  resetImage() {
+    this.txtFile.nativeElement.value = ''
+    this.image.reset()
+    this.file.reset()
   }
 
   //#endregion

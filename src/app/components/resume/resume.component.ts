@@ -188,7 +188,6 @@ export class ResumeComponent implements OnDestroy {
 
     const title = 'Consulta resumen de imágenes procesadas'
 
-    debugger
     this.conversionApiService
       .resume(this.startDate.value, this.endDate.value)
       .then((val: GlobalResponse<ResumeResponse[]>) => {

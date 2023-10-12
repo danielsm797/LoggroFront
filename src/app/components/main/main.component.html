@@ -1,9 +1,11 @@
-<div class="grid lg:grid-cols-3 h-full">
+<div class="bg-gray-900 grid lg:grid-cols-3 gap-3 h-full">
 
-  <section class="p-5 border-gray-900 max-[640px]:border-b-2 sm:border-b-2 lg:border-r-2 flex flex-col justify-center">
+  <section class="bg-gray-800 p-5 flex flex-col gap-2 justify-center items-center rounded-b-2xl">
+
+    <img title="logo" class="w-14" src="../../../assets/logo.png" />
 
     <h1 class="text-red-300 text-lg font-semibold text-center mb-3">
-      Convertir imágenes de JPEG, JPG a PNG
+      Almacenamiento y conversión de imágenes en formato JPEG, JPG a PNG
     </h1>
 
     <label class="text-white">
@@ -12,8 +14,7 @@
 
   </section>
 
-  <section
-    class="p-5 border-gray-900 flex flex-col gap-4 justify-center items-center max-[640px]:border-b-2 sm:border-b-2 lg:border-r-2">
+  <section class="bg-gray-800 p-5 flex flex-col gap-4 justify-center items-center rounded-b-2xl">
 
     <form class="flex flex-col gap-3">
 
@@ -37,9 +38,14 @@
 
     <img class="w-4/5 h-full rounded-xl" [src]="image.value" title="Image selected" *ngIf="image.value" />
 
+    <button type="button" *ngIf="image.value" (click)="resetImage()"
+      class="pointer-events-auto rounded-md bg-gray-900 px-3 py-2 text-[0.8125rem] font-semibold leading-5 text-violet-400 border-2 border-gray-900 hover:border-violet-300">
+      Eliminar
+    </button>
+
   </section>
 
-  <section class="p-5 flex flex-col justify-center">
+  <section class="bg-gray-800 p-5 flex flex-col justify-center rounded-b-2xl">
 
     <form class="flex flex-col gap-3" [formGroup]="frmMain">
 
