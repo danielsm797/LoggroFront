@@ -15,6 +15,8 @@ import { message } from 'src/app/utils/helpers';
 import { GlobalResponse, ResumeResponse } from 'src/app/utils/types';
 import { Subscription } from 'rxjs'
 import { DateTime } from 'luxon';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormMessage } from 'src/app/utils/errorForm';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries
@@ -45,6 +47,8 @@ export class ResumeComponent implements OnDestroy {
 
   #data: number[] = []
 
+  frmResume!: FormGroup
+
   //#endregion
 
   //#region Constructors
@@ -54,9 +58,12 @@ export class ResumeComponent implements OnDestroy {
     private eventsService: EventsService
   ) {
 
+    this.#initForm()
     this.#initSubs()
-    this.searchResume()
   }
+
+  get startDate() { return this.frmResume.controls['startDate'] }
+  get endDate() { return this.frmResume.controls['endDate'] }
 
   ngOnDestroy() {
     this.#subs.forEach(x => x.unsubscribe())
@@ -73,7 +80,7 @@ export class ResumeComponent implements OnDestroy {
         this.eventsService
           .evntRefreshResume
           .subscribe(() => {
-            this.#addConversion()
+            this.#searchResume()
           })
       )
   }
@@ -137,12 +144,53 @@ export class ResumeComponent implements OnDestroy {
     };
   }
 
-  searchResume() {
+  #initForm() {
+
+    this.frmResume = new FormGroup({
+      startDate: new FormControl('', [Validators.required]),
+      endDate: new FormControl('', [Validators.required]),
+    })
+
+    const start = DateTime
+      .local()
+      .minus({ week: 1 })
+      .toFormat('yyyy-LL-dd HH:mm')
+      .replace(' ', 'T')
+
+    const end = DateTime
+      .local()
+      .toFormat('yyyy-LL-dd HH:mm')
+      .replace(' ', 'T')
+
+    this.startDate
+      .patchValue(start)
+
+    this.endDate
+      .patchValue(end)
+
+    this.#searchResume()
+  }
+
+  validateForm() {
+
+    if (this.frmResume.invalid) {
+      return this.frmResume.markAllAsTouched()
+    }
+
+    if (this.startDate.value > this.endDate.value) {
+      return message('Consulta resumen de imágenes procesadas', 'La fecha inicial no puede ser mayor que la fecha inicial', false)
+    }
+
+    this.#searchResume()
+  }
+
+  #searchResume() {
 
     const title = 'Consulta resumen de imágenes procesadas'
 
+    debugger
     this.conversionApiService
-      .resume()
+      .resume(this.startDate.value, this.endDate.value)
       .then((val: GlobalResponse<ResumeResponse[]>) => {
 
         if (!val.success) {
@@ -157,18 +205,22 @@ export class ResumeComponent implements OnDestroy {
       })
   }
 
-  #addConversion() {
+  // #addConversion() {
 
-    const currentHour = +DateTime.local().toFormat('HH')
+  //   const currentHour = +DateTime.local().toFormat('HH')
 
-    this.#data[currentHour]++
+  //   this.#data[currentHour]++
 
-    this.chartOptions.series = [
-      {
-        name: 'Resume',
-        data: this.#data
-      }
-    ]
+  //   this.chartOptions.series = [
+  //     {
+  //       name: 'Resume',
+  //       data: this.#data
+  //     }
+  //   ]
+  // }
+
+  getMessageError(field: string) {
+    return FormMessage.get(this.frmResume, field)
   }
 
   //#endregion

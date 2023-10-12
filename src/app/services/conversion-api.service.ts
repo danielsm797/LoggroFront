@@ -17,9 +17,9 @@ export class ConversionApiService {
       .request(HttpMethods.GET, environment.search, { fi: startDate, ff: endDate })
   }
 
-  resume() {
+  resume(startDate: string, endDate: string) {
     return this.requestService
-      .request(HttpMethods.GET, environment.resume)
+      .request(HttpMethods.GET, environment.resume, { fi: startDate, ff: endDate })
   }
 
   convert(form: FormData, userName: string, fileName: string) {

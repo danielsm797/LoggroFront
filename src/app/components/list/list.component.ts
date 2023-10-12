@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ConversionApiService } from '../../services/conversion-api.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { GlobalResponse, SearchResponse } from 'src/app/utils/types';
@@ -12,7 +12,7 @@ import { message } from 'src/app/utils/helpers';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
-export class ListComponent implements AfterViewInit, OnInit {
+export class ListComponent implements OnInit {
 
   //#region Properties
 
@@ -40,28 +40,6 @@ export class ListComponent implements AfterViewInit, OnInit {
     this.#init()
   }
 
-  ngAfterViewInit() {
-
-    const start = DateTime.local().minus({ day: 1 })
-    const end = DateTime.local()
-
-    this.startDate
-      .setValue(start.toISO())
-
-    this.endDate
-      .setValue(end.toISO())
-
-    // Actualizamos el valor del elemento
-
-    this.txtDateStart.nativeElement.value = start.toFormat('yyyy-LL-dd HH:mm')
-
-    this.txtDateEnd.nativeElement.value = end.toFormat('yyyy-LL-dd HH:mm')
-
-    setTimeout(() => {
-      this.#search()
-    }, 1000);
-  }
-
   get startDate() { return this.frmList.controls['startDate'] }
   get endDate() { return this.frmList.controls['endDate'] }
 
@@ -75,6 +53,25 @@ export class ListComponent implements AfterViewInit, OnInit {
       startDate: new FormControl('', [Validators.required]),
       endDate: new FormControl('', [Validators.required]),
     })
+
+    const start = DateTime
+      .local()
+      .minus({ day: 1 })
+      .toFormat('yyyy-LL-dd HH:mm')
+      .replace(' ', 'T')
+
+    const end = DateTime
+      .local()
+      .toFormat('yyyy-LL-dd HH:mm')
+      .replace(' ', 'T')
+
+    this.startDate
+      .patchValue(start)
+
+    this.endDate
+      .patchValue(end)
+
+    this.#search()
   }
 
   #search() {
@@ -119,7 +116,8 @@ export class ListComponent implements AfterViewInit, OnInit {
     }
 
     if (this.startDate.value > this.endDate.value) {
-      return alert('La fecha inicial no puede ser mayor que la fecha final')
+      message('Consulta imágenes procesadas', 'La fecha inicial no puede ser mayor que la fecha final', false)
+      return
     }
 
     this.#search()
