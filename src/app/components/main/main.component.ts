@@ -73,6 +73,10 @@ export class MainComponent {
 
   validateForm() {
 
+    if (this.loading) {
+      return
+    }
+
     if (this.frmMain.invalid) {
       return this.frmMain.markAllAsTouched()
     }
@@ -86,6 +90,8 @@ export class MainComponent {
     formData.append('', this.file.value)
 
     const title = 'Procesar imagen'
+
+    this.loading = true
 
     this.conversionApiService
       .convert(formData, this.userName.value, this.fileName.value)
@@ -105,6 +111,9 @@ export class MainComponent {
       })
       .catch(() => {
         message(title, 'Ha ocurrido un error generando el proceso de subida de la imagen', false)
+      })
+      .finally(() => {
+        this.loading = false
       })
   }
 

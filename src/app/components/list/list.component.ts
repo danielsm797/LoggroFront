@@ -97,9 +97,17 @@ export class ListComponent implements OnInit {
 
         object
           .forEach(x => {
-            x.createdAt = DateTime.fromISO(x.createdAt).toLocal().toFormat('yyyy/LL/dd HH:mm')
+
+            x.createdAt = DateTime
+              .fromISO(x.createdAt)
+              .toLocal()
+              .toFormat('yyyy/LL/dd HH:mm')
+
             x.fileName = x.path
-            x.path = `${environment.resources}${x.path}`
+
+            x.path = x.s3
+              ? x.s3
+              : `${environment.resources}${x.path}`
           })
 
         this.images = object

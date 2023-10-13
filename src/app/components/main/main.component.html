@@ -87,9 +87,9 @@
 
       </div>
 
-      <button type="button" (click)="validateForm()"
+      <button type="button" (click)="validateForm()" [disabled]="loading"
         class="mt-5 pointer-events-auto rounded-md bg-gray-900 px-3 py-2 text-[0.8125rem] font-semibold leading-5 text-violet-400 border-2 border-gray-900 hover:border-violet-300 w-full">
-        {{ loading ? 'Cargando...' : 'Convertir' }}
+        {{ loading ? 'Procesando...' : 'Convertir' }}
       </button>
 
     </form>

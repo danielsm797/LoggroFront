@@ -36,11 +36,13 @@ describe('app spec', () => {
       .get('#main-img-selected')
 
     cy
-      .get('#txtFileName')
+      .get('#main-panel')
+      .find('#txtFileName')
       .type('File example 01')
 
     cy
-      .get('#txtUserName')
+      .get('#main-panel')
+      .find('#txtUserName')
       .type('User example 01')
 
     cy
@@ -65,11 +67,13 @@ describe('app spec', () => {
       .get('#main-img-selected')
 
     cy
-      .get('#txtFileName')
+      .get('#main-panel')
+      .find('#txtFileName')
       .type('File example 02')
 
     cy
-      .get('#txtUserName')
+      .get('#main-panel')
+      .find('#txtUserName')
       .type('User example 02')
 
     cy

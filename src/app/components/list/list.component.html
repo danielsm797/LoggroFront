@@ -33,7 +33,7 @@
 
     <button type="button" (click)="validateForm()"
       class="pointer-events-auto rounded-md bg-gray-800 px-3 py-2 text-[0.8125rem] font-semibold leading-5 text-violet-400 border-2 border-gray-900 hover:border-violet-300 w-full">
-      Consultar
+      {{loading ? 'Consultando...' : 'Consultar'}}
     </button>
 
   </form>

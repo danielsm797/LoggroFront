@@ -10,7 +10,8 @@ export type SearchResponse = {
   prevExtension: string,
   createdAt: string,
   user: string,
-  fileName?: string
+  fileName?: string,
+  s3?: string
 }
 
 export type ResumeResponse = {
