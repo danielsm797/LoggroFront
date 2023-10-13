@@ -45,7 +45,7 @@ export class ResumeComponent implements OnDestroy {
 
   #subs: Subscription[] = []
 
-  #data: number[] = []
+  // #data: number[] = []
 
   frmResume!: FormGroup
 
@@ -100,8 +100,6 @@ export class ResumeComponent implements OnDestroy {
     for (const x of result) {
       data[+x._id] = x.count
     }
-
-    this.#data = data
 
     this.chartOptions = {
       series: [

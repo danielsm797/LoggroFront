@@ -31,7 +31,7 @@
           accept="image/jpeg, image/jpg"
           class='bg-transparent text-white rounded-md border-2 border-gray-600 py-1 px-2 hover:border-violet-400 w-full' />
 
-        <label class="text-red-300 text-sm">
+        <label class="text-red-400 text-sm">
           {{getMessageError('image')}}
         </label>
 
@@ -39,7 +39,8 @@
 
     </form>
 
-    <img class="w-4/5 h-full rounded-xl" [src]="image.value" title="Image selected" *ngIf="image.value" />
+    <img id="main-img-selected" class="w-4/5 h-full rounded-xl" [src]="image.value" title="Image selected"
+      *ngIf="image.value" />
 
     <button type="button" *ngIf="image.value" (click)="resetImage()"
       class="pointer-events-auto rounded-md bg-gray-900 px-3 py-2 text-[0.8125rem] font-semibold leading-5 text-violet-400 border-2 border-gray-900 hover:border-violet-300">
@@ -62,10 +63,10 @@
           Nombre de la imagen
         </label>
 
-        <input type='text' placeholder='Ingrese el nombre de la imagen' formControlName="fileName"
+        <input type='text' id="txtFileName" placeholder='Ingrese el nombre de la imagen' formControlName="fileName"
           class='bg-transparent text-white rounded-md border-2 border-gray-600 py-1 px-2 hover:border-violet-400 w-full' />
 
-        <label class="text-red-300 text-sm">
+        <label class="text-red-400 text-sm">
           {{getMessageError('fileName')}}
         </label>
 
@@ -77,10 +78,10 @@
           Nombre completo
         </label>
 
-        <input type='text' placeholder='Ingrese el nombre completo' formControlName="userName"
+        <input type='text' id="txtUserName" placeholder='Ingrese el nombre completo' formControlName="userName"
           class='bg-transparent text-white rounded-md border-2 border-gray-600 py-1 px-2 hover:border-violet-400 w-full' />
 
-        <label class="text-red-300 text-sm">
+        <label class="text-red-400 text-sm">
           {{getMessageError('userName')}}
         </label>
 
